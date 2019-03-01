@@ -9,15 +9,41 @@
 function ConvertHandler() {
   
   this.getNum = function(input) {
-    var result;
+    let num;
+    const firstLtrIndex = input.search(/[A-Za-z]/g);
+    if (!input) return 'invalid number'; // return early if empty input
+
+    if (firstLtrIndex < 0) {  // if no unit in input
+      num = input.trim(); 
+    } else {
+      num = input.slice(0, firstLtrIndex).trim();
+    }
+
+    if (!num) return 1; // default 1 if no num entered
+
+    if (+num === 0) return 'invalid number'; // no zero for num
+
+    if (!num.includes('/')) { // num is not a fraction
+      num = +num;
+    } else {
+      let nums = num.split('/').map(num => num.trim());
+      if (nums.length > 2 ) { // no double fractions
+        num = 'invalid number';
+      } else {
+        num = nums[1] === 0 ? 'invalid number' : (+nums[0] / +nums[1]);
+      }
+    }
     
-    return result;
+    return num;
   };
   
   this.getUnit = function(input) {
-    var result;
+    let unit;
+    const firstLtrIndex = input.search(/[A-Za-z]/g);
+    if (!input || firstLtrIndex < 0) return 'invalid unit'; // return early if empty input or no letters found (no units given)
+    unit = input.slice(firstLtrIndex).trim();
     
-    return result;
+    return unit;
   };
   
   this.getReturnUnit = function(initUnit) {
