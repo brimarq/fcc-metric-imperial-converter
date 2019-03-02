@@ -42,7 +42,7 @@ suite('Unit Tests', function(){
     
     test('Invalid Input (double fraction)', function(done) {
       const input = '2/3/2lbs';
-      assert.equal(convertHandler.getNum(input), 'invalid number');
+      assert.equal(convertHandler.getNum(input), null);
       done();
     });
     
@@ -68,7 +68,7 @@ suite('Unit Tests', function(){
     test('Unknown Unit Input', function(done) {
       const input = ['mm', 'oz', 'ft', 'wtf', ''];
       input.forEach(function(ele) {
-        assert.equal(convertHandler.getUnit(ele), 'invalid unit');
+        assert.equal(convertHandler.getUnit(ele), null);
       });
       done();
     });  
