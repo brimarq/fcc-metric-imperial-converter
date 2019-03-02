@@ -11,7 +11,7 @@ function ConvertHandler() {
   this.getNum = function(input) {
     let num;
     const firstLtrIndex = input.search(/[A-Za-z]/g);
-    // if (!input) return 'invalid number'; // return early if empty input
+
     if (!input) return null; // return early if empty input
 
     if (firstLtrIndex < 0) {  // if no unit in input
@@ -40,7 +40,7 @@ function ConvertHandler() {
     let unit;
     const firstLtrIndex = input.search(/[A-Za-z]/g);
     const validUnits = ['l','gal','km','mi','kg','lbs'];
-    // if (!input || firstLtrIndex < 0) return 'invalid unit'; // return early if empty input or no letters found (no units given)
+
     if (!input || firstLtrIndex < 0) return null; // return early if empty input or no letters found (no units given)
     unit = input.slice(firstLtrIndex).trim().toLowerCase();
     if (!validUnits.includes(unit)) return null; // return early if invalid unit
